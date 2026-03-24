@@ -19,17 +19,17 @@ export default function DeltaBadge({ delta, positive, onDark = false }: Props) {
       sx={{
         display: 'inline-flex',
         alignItems: 'center',
-        gap: '2px',
+        gap: '4px',
         ml: 1,
       }}
     >
-      <Icon sx={{ fontSize: 12, color }} />
       <Typography
         variant="body2"
         sx={{ fontSize: '13px', fontWeight: 500, color }}
       >
         {delta}
       </Typography>
+      <Icon sx={{ fontSize: 24, color, flexShrink: 0 }} />
     </Box>
   );
 }
