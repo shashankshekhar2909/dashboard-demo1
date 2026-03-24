@@ -75,9 +75,9 @@ export default function GeographicMap() {
               zIndex: 1000,
               bgcolor: 'transparent',
               borderRadius: '16px',
-              boxShadow: '0 22px 48px rgba(29, 43, 67, 0.20)',
+              boxShadow: 'none',
               overflow: 'hidden',
-              width: '340px',
+              width: '343px',
               p: 0,
             }}
           >

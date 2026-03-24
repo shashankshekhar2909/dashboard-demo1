@@ -1,4 +1,4 @@
-import 'leaflet/dist/leaflet.css';
+import './globals.css';
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 import ThemeRegistry from './ThemeRegistry';

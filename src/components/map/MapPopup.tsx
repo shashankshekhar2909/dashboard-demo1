@@ -35,51 +35,67 @@ export default function MapPopup({ marker, onClose }: Props) {
   ];
 
   return (
-    <Box className="map-popup-card" sx={{ width: '100%', bgcolor: '#FFFFFF', borderRadius: '16px', boxShadow: '0 18px 40px rgba(42, 57, 85, 0.22)', overflow: 'hidden', fontFamily: 'Arial, Helvetica, sans-serif', border: '1px solid #dce5f0' }}>
-      <Box className="map-popup-header" sx={{ p: '14px 14px 12px', position: 'relative', bgcolor: '#2F446A', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+    <Box
+      className="map-popup-card"
+      sx={{
+        width: '343px',
+        minHeight: '462px',
+        maxHeight: 'calc(100vh - 120px)',
+        bgcolor: '#F7F9FC',
+        borderRadius: '16px',
+        boxShadow:
+          '0px 7px 8px -4px rgba(0,0,0,0.15), 0px 12px 17px 2px rgba(0,0,0,0.08), 0px 5px 22px 4px rgba(0,0,0,0.08)',
+        overflow: 'auto',
+        fontFamily: 'Arial, Helvetica, sans-serif',
+        border: '1px solid #00000014',
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+    >
+      <Box className="map-popup-header" sx={{ p: '16px 16px 12px', position: 'relative', flexShrink: 0 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: '6px', pr: '28px' }}>
           <Typography sx={{ fontSize: '15px', lineHeight: 1, flexShrink: 0 }}>{marker.flagEmoji}</Typography>
-          <Typography sx={{ fontSize: '16px', fontWeight: 700, color: '#FFFFFF' }}>{marker.country}</Typography>
+          <Typography sx={{ fontSize: '18px', fontWeight: 700, color: '#2f3237' }}>{marker.country}</Typography>
           <Box sx={{
-            bgcolor: status.bg,
-            color: status.color,
-            fontSize: '11px',
+            bgcolor: marker.status === 'deployed' ? 'rgba(103, 194, 132, 0.18)' : status.bg,
+            color: marker.status === 'deployed' ? '#55a76b' : status.color,
+            fontSize: '12px',
             fontWeight: 700,
             borderRadius: '20px',
-            px: '8px',
-            py: '2px',
+            px: '10px',
+            py: '4px',
             lineHeight: 1.6,
             flexShrink: 0,
           }}>
             {status.label}
           </Box>
         </Box>
-        <Typography sx={{ fontSize: '11px', color: '#A8B8D8', mt: '4px' }}>{marker.region}</Typography>
+        <Typography sx={{ fontSize: '12px', color: '#8d95a3', mt: '10px' }}>{marker.region}</Typography>
         <IconButton
           size="small"
           onClick={onClose}
           sx={{
             position: 'absolute',
-            top: '8px',
-            right: '8px',
-            width: 24,
-            height: 24,
-            color: '#D7E1F3',
-            '&:hover': { bgcolor: 'rgba(255,255,255,0.10)', color: '#FFFFFF' },
+            top: '14px',
+            right: '14px',
+            width: 28,
+            height: 28,
+            color: '#7f8794',
+            '&:hover': { bgcolor: '#EEF3F9', color: '#1A2340' },
           }}
         >
-          <CloseIcon sx={{ fontSize: 16 }} />
+          <CloseIcon sx={{ fontSize: 20 }} />
         </IconButton>
       </Box>
 
-      <Box className="map-popup-metrics" sx={{ px: '14px', pt: '14px', pb: '12px' }}>
+      <Box className="map-popup-metrics" sx={{ px: '16px', pb: '16px', flexShrink: 0 }}>
         <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
           {metricCells.map((cell) => (
-            <Box key={cell.label} sx={{ border: '1px solid #e8eef7', background: '#f6f9fc', borderRadius: '10px', p: '9px 10px' }}>
-              <Typography sx={{ fontSize: '9px', fontWeight: 700, textTransform: 'none', color: '#b0b8c4', letterSpacing: 0, mb: '5px', lineHeight: 1 }}>
+            <Box key={cell.label} sx={{ border: '1px solid #eef2f8', background: '#FFFFFF', borderRadius: '14px', p: '12px 12px 10px' }}>
+              <Typography sx={{ fontSize: '10px', fontWeight: 500, textTransform: 'none', color: '#a7b0bc', letterSpacing: 0, mb: '8px', lineHeight: 1 }}>
                 {cell.label}
               </Typography>
-              <Typography sx={{ fontSize: '17px', fontWeight: 700, color: cell.valueColor, lineHeight: 1.1 }}>
+              <Typography sx={{ fontSize: '18px', fontWeight: 500, color: cell.valueColor, lineHeight: 1.1 }}>
                 {cell.value}
               </Typography>
             </Box>
@@ -87,12 +103,12 @@ export default function MapPopup({ marker, onClose }: Props) {
         </Box>
       </Box>
 
-      <Box className="map-popup-deployments" sx={{ px: '14px', pb: '10px' }}>
-        <Typography sx={sectionLabelSx}>Active Deployments</Typography>
+      <Box className="map-popup-deployments" sx={{ px: '16px', pt: '12px', pb: '16px', borderTop: '1px solid #e4e9f1', flexShrink: 0 }}>
+        <Typography sx={{ ...sectionLabelSx, fontSize: '11px', color: '#A4ACB8', mb: '12px' }}>Active Deployments</Typography>
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
           {marker.deploymentLabels.map((label) => (
             <Box key={label} sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '10px' }}>
-              <Box sx={{ bgcolor: '#edf3fb', borderRadius: '999px', px: '10px', py: '5px', fontSize: '11px', fontWeight: 600, color: '#76839b', lineHeight: 1.5 }}>
+              <Box sx={{ bgcolor: '#EEF3F9', borderRadius: '14px', px: '12px', py: '9px', fontSize: '11px', fontWeight: 600, color: '#5d7695', lineHeight: 1.4, flex: 1 }}>
                 {label}
               </Box>
               <Typography sx={{ fontSize: '12px', fontWeight: 700, color: '#4ea4f2', cursor: 'pointer', ml: 'auto', pl: '8px', '&:hover': { textDecoration: 'underline' } }}>
@@ -103,32 +119,32 @@ export default function MapPopup({ marker, onClose }: Props) {
         </Box>
       </Box>
 
-      <Box className="map-popup-intelligence" sx={{ px: '14px', pb: '12px' }}>
-        <Typography sx={sectionLabelSx}>Intelligence ({marker.intelligence.length})</Typography>
+      <Box className="map-popup-intelligence" sx={{ px: '16px', pt: '12px', pb: '16px', borderTop: '1px solid #e4e9f1' }}>
+        <Typography sx={{ ...sectionLabelSx, fontSize: '11px', color: '#A4ACB8', mb: '12px' }}>Intelligence ({marker.intelligence.length})</Typography>
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
           {marker.intelligence.map((item, i) => (
             <Box key={i} sx={{ display: 'flex', alignItems: 'flex-start', gap: '6px' }}>
               <InfoOutlinedIcon sx={{ fontSize: 14, color: '#4c9cf1', mt: '2px', flexShrink: 0 }} />
-              <Typography sx={{ fontSize: '12px', color: '#4c9cf1', lineHeight: 1.4, fontWeight: 600 }}>{item}</Typography>
+              <Typography sx={{ fontSize: '12px', color: '#4c78a8', lineHeight: 1.4, fontWeight: 600 }}>{item}</Typography>
             </Box>
           ))}
         </Box>
       </Box>
 
-      <Box className="map-popup-cta" sx={{ px: '14px', pb: '14px' }}>
+      <Box className="map-popup-cta" sx={{ px: '16px', pb: '16px', flexShrink: 0 }}>
         <Button
           fullWidth
           variant="contained"
           sx={{
-            bgcolor: '#2F446A',
+            bgcolor: '#394E7A',
             color: '#FFFFFF',
             borderRadius: '24px',
-            height: '36px',
+            height: '38px',
             fontSize: '12px',
             fontWeight: 700,
             textTransform: 'none',
             boxShadow: 'none',
-            '&:hover': { bgcolor: '#3e5681', boxShadow: 'none' },
+            '&:hover': { bgcolor: '#48608f', boxShadow: 'none' },
           }}
         >
           View Full Profile ›
