@@ -7,7 +7,6 @@ interface Props {
 }
 
 export default function ForecastItem({ item }: Props) {
-  const borderColor = item.positive ? '#FF9800' : '#FF9800';
   return (
     <Box
       sx={{

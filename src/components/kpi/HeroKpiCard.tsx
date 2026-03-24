@@ -23,6 +23,10 @@ export default function HeroKpiCard({ data }: Props) {
   const countedValue = useCountUp(data.value, 2000);
   const isDark = data.variant === 'dark';
   const Icon = iconMap[data.icon];
+  const textPrimary   = isDark ? '#FFFFFF' : '#1A2340';
+  const textSecondary = isDark ? '#A8B8D8'  : '#6B7A99';
+  const iconColor     = isDark ? '#FFFFFF' : '#2f446a';
+  const axisColor     = isDark ? 'rgba(255,255,255,0.28)' : '#D7DEEA';
 
   const chartOptions = {
     ...baseChartOptions,
@@ -30,14 +34,36 @@ export default function HeroKpiCard({ data }: Props) {
     chart: {
       ...baseChartOptions.chart,
       id: `hero-${data.id}`,
-      height: 90,
+      height: 120,
+      sparkline: { enabled: false },
+      toolbar: { show: false },
+    },
+    xaxis: {
+      categories: data.series.categories,
+      labels: {
+        show: true,
+        offsetY: -2,
+        style: {
+          colors: Array(data.series.categories.length).fill(textSecondary),
+          fontSize: '10px',
+          fontFamily: 'Roboto, sans-serif',
+          fontWeight: 500,
+        },
+      },
+      axisBorder: { show: true, color: axisColor, height: 1 },
+      axisTicks: { show: true, color: axisColor, height: 8 },
+    },
+    grid: { show: false },
+    yaxis: { show: false },
+    tooltip: { enabled: false },
+    plotOptions: {
+      bar: {
+        borderRadius: 2,
+        borderRadiusApplication: 'end' as const,
+        columnWidth: '58%',
+      },
     },
   };
-
-  const textPrimary   = isDark ? '#FFFFFF' : '#1A2340';
-  const textSecondary = isDark ? '#A8B8D8'  : '#6B7A99';
-  const iconBg        = isDark ? 'rgba(255,255,255,0.15)' : '#F4F6F9';
-  const iconColor     = isDark ? '#FFFFFF' : '#2f446a';
 
   const displayValue = data.id === 'capital'
     ? `$${countedValue}`
@@ -66,14 +92,13 @@ export default function HeroKpiCard({ data }: Props) {
         },
       }}
     >
-      {/* Icon */}
       <Box
         className="hero-kpi-icon"
         sx={{
           width: 44,
           height: 44,
           borderRadius: '10px',
-          bgcolor: iconBg,
+          bgcolor: isDark ? 'rgba(255,255,255,0.15)' : '#F4F6F9',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -84,23 +109,20 @@ export default function HeroKpiCard({ data }: Props) {
         <Icon sx={{ fontSize: 24 }} />
       </Box>
 
-      {/* Chart — absolute top-right */}
-      <Box sx={{ position: 'absolute', top: 16, right: 16, width: 200, height: 90, overflow: 'hidden' }}>
+      <Box sx={{ position: 'absolute', top: 16, right: 16, width: 240, height: 120, overflow: 'hidden' }}>
         <Chart
           type="bar"
           options={chartOptions}
           series={[{ name: data.label, data: data.series.data }]}
-          height={90}
-          width={200}
+          height={120}
+          width={240}
         />
       </Box>
 
-      {/* Label */}
       <Typography sx={{ color: textSecondary, fontSize: '13px', fontWeight: 400, mt: '12px' }}>
         {data.label}
       </Typography>
 
-      {/* Value + Delta */}
       <Box sx={{ display: 'flex', alignItems: 'baseline', mt: '4px', gap: '8px' }}>
         <Typography sx={{ color: textPrimary, fontSize: '36px', fontWeight: 700, lineHeight: 1.1 }}>
           {displayValue}

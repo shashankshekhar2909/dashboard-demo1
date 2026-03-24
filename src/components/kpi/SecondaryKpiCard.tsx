@@ -46,7 +46,34 @@ export default function SecondaryKpiCard({ data }: Props) {
     chart: {
       ...baseChartOptions.chart,
       id: `secondary-${data.id}-${period}`,
-      height: 65,
+      height: 84,
+      sparkline: { enabled: false },
+      toolbar: { show: false },
+    },
+    xaxis: {
+      categories: series.categories,
+      labels: {
+        show: true,
+        offsetY: -1,
+        style: {
+          colors: Array(series.categories.length).fill('#9AA3B8'),
+          fontSize: '8px',
+          fontFamily: 'Roboto, sans-serif',
+          fontWeight: 500,
+        },
+      },
+      axisBorder: { show: true, color: '#D7DEEA', height: 1 },
+      axisTicks: { show: true, color: '#D7DEEA', height: 7 },
+    },
+    grid: { show: false },
+    yaxis: { show: false },
+    tooltip: { enabled: false },
+    plotOptions: {
+      bar: {
+        borderRadius: 2,
+        borderRadiusApplication: 'end' as const,
+        columnWidth: '56%',
+      },
     },
   };
 
@@ -56,9 +83,10 @@ export default function SecondaryKpiCard({ data }: Props) {
       sx={{
         bgcolor: '#FFFFFF',
         borderRadius: '12px',
-        p: '16px 20px',
+        p: '16px 16px',
         flex: 1,
-        height: 140,
+        height: 164,
+        minWidth: 0,
         display: 'flex',
         flexDirection: 'column',
         boxShadow: '0 1px 4px rgba(0,0,0,0.06)',
@@ -69,7 +97,6 @@ export default function SecondaryKpiCard({ data }: Props) {
         },
       }}
     >
-      {/* Top row: icon left, period selector right */}
       <Box
         className="secondary-kpi-top-row"
         sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
@@ -112,12 +139,10 @@ export default function SecondaryKpiCard({ data }: Props) {
         </Select>
       </Box>
 
-      {/* Bottom row: label+value left, chart right */}
       <Box
         className="secondary-kpi-bottom-row"
-        sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', mt: 'auto' }}
+        sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', mt: 'auto', minWidth: 0, gap: '8px' }}
       >
-        {/* Left: label + value + delta */}
         <Box className="secondary-kpi-value-group" sx={{ minWidth: 0 }}>
           <Typography sx={{ color: '#6B7A99', fontSize: '12px', fontWeight: 400, lineHeight: 1.3 }}>
             {data.label}
@@ -133,14 +158,13 @@ export default function SecondaryKpiCard({ data }: Props) {
           </Box>
         </Box>
 
-        {/* Right: chart bottom-right */}
-        <Box className="secondary-kpi-chart" sx={{ width: 130, height: 65, flexShrink: 0, overflow: 'hidden' }}>
+        <Box className="secondary-kpi-chart" sx={{ width: 126, height: 84, flexShrink: 0, overflow: 'hidden' }}>
           <Chart
             type="bar"
             options={chartOptions}
             series={[{ name: data.label, data: series.data }]}
-            height={65}
-            width={130}
+            height={84}
+            width={126}
           />
         </Box>
       </Box>

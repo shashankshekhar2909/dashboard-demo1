@@ -32,34 +32,34 @@ export default function MapLegend() {
       className="map-legend"
       sx={{
         position: 'absolute',
-        top: '12px',
-        right: '12px',
+        top: '14px',
+        right: '14px',
         zIndex: 1000,
-        bgcolor: 'rgba(255,255,255,0.92)',
-        borderRadius: '8px',
-        p: '12px',
-        minWidth: '140px',
-        boxShadow: '0 2px 8px rgba(0,0,0,0.12)',
+        bgcolor: 'rgba(249, 251, 255, 0.94)',
+        borderRadius: '10px',
+        p: '12px 14px',
+        minWidth: '160px',
+        boxShadow: 'var(--shadow-soft)',
       }}
     >
-      <Typography sx={{ fontSize: '10px', fontWeight: 600, color: '#6B7A99', textTransform: 'uppercase', letterSpacing: '0.08em', mb: '6px' }}>
+      <Typography sx={{ fontSize: '10px', fontWeight: 700, color: '#a0a7b2', textTransform: 'uppercase', letterSpacing: '0.08em', mb: '8px' }}>
         Status Layer
       </Typography>
       {statusItems.map((item) => (
         <Box key={item.label} sx={{ display: 'flex', alignItems: 'center', gap: '6px', mb: '4px' }}>
           <Dot color={item.color} />
-          <Typography sx={{ fontSize: '11px', color: '#1A2340' }}>{item.label}</Typography>
+          <Typography sx={{ fontSize: '12px', color: '#55606f' }}>{item.label === 'In Progress' ? 'Deployment in progress' : item.label === 'Pending' ? 'Pending proposal' : 'Deployed solution'}</Typography>
         </Box>
       ))}
 
-      <Box sx={{ borderTop: '1px solid #E2E8F0', mt: '8px', pt: '8px' }}>
-        <Typography sx={{ fontSize: '10px', fontWeight: 600, color: '#6B7A99', textTransform: 'uppercase', letterSpacing: '0.08em', mb: '6px' }}>
+      <Box sx={{ borderTop: '1px solid #dde5f0', mt: '10px', pt: '10px' }}>
+        <Typography sx={{ fontSize: '10px', fontWeight: 700, color: '#a0a7b2', textTransform: 'uppercase', letterSpacing: '0.08em', mb: '8px' }}>
           Risk Status
         </Typography>
         {riskItems.map((item) => (
           <Box key={item.label} sx={{ display: 'flex', alignItems: 'center', gap: '6px', mb: '4px' }}>
             <Dot color={item.color} />
-            <Typography sx={{ fontSize: '11px', color: '#1A2340' }}>{item.label}</Typography>
+            <Typography sx={{ fontSize: '12px', color: '#55606f' }}>{item.label.replace(' Risk', '')}</Typography>
           </Box>
         ))}
       </Box>

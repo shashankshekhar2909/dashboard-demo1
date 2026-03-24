@@ -31,11 +31,10 @@ export default function AIExecutiveBrief() {
         alignSelf: 'stretch',
       }}
     >
-      {/* Header */}
       <Box
         className="ai-brief-header"
         sx={{
-          background: 'linear-gradient(135deg, #2D4B7A 0%, #1B2A4A 100%)',
+          bgcolor: '#2F446A',
           px: '24px',
           py: '20px',
           flexShrink: 0,
@@ -43,7 +42,6 @@ export default function AIExecutiveBrief() {
           flexDirection: 'column',
         }}
       >
-        {/* Top row: icon+title | button */}
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <AutoAwesomeIcon sx={{ fontSize: 16, color: '#FFD700' }} />
@@ -71,22 +69,18 @@ export default function AIExecutiveBrief() {
             View Full Report ›
           </Button>
         </Box>
-        {/* Bottom row: timestamp */}
         <Typography sx={{ fontSize: '12px', color: '#A8B8D8', mt: '8px' }}>
           Updated: 3 minute ago
         </Typography>
       </Box>
 
-      {/* TOP 3 PRIORITIES */}
       <Typography sx={sectionLabelSx}>Top 3 Priorities</Typography>
       {priorities.map((item) => (
         <PriorityItemComponent key={item.id} item={item} />
       ))}
 
-      {/* Underperforming Deployment Alert */}
       <DeploymentAlert data={deploymentAlert} />
 
-      {/* STRATEGIC FORECASTING */}
       <Typography sx={sectionLabelSx}>Strategic Forecasting</Typography>
       {forecastItems.map((item) => (
         <ForecastItemComponent key={item.id} item={item} />

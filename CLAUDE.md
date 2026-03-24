@@ -13,7 +13,7 @@ replace old ones, no outdated information remains.
 ## Project Overview
 
 **Product:** AquaIntel — Executive Control Room
-**Stack:** Next.js 15 · React 19 · TypeScript · Material UI (MUI) · ApexCharts · Leaflet.js
+**Stack:** Next.js 16 · React 19 · TypeScript · Material UI (MUI) · ApexCharts · Leaflet.js
 **Font:** Roboto (Google Fonts) — only Roboto, no fallback sans-serif substitutions
 **Target viewports:** 1920px · 1440px · 1280px (no horizontal scroll at any of these)
 **Docker:** runs on port 3005 → `http://192.168.0.122:3005/` (`docker run -p 3005:3000`)

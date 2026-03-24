@@ -41,25 +41,24 @@ function NavItem({ icon: Icon, label, active = false, collapsed }: NavItemProps)
           display: 'flex',
           alignItems: 'center',
           gap: '10px',
-          px: '12px',
-          py: '9px',
-          mx: '8px',
+          px: '14px',
+          py: '12px',
+          mx: '10px',
           borderRadius: '8px',
           cursor: 'pointer',
-          color: active ? '#2f446a' : '#4B5F82',
-          bgcolor: active ? 'rgba(47,68,106,0.12)' : 'transparent',
-          borderLeft: active ? '3px solid #2f446a' : '3px solid transparent',
+          color: active ? '#ffffff' : '#2f3237',
+          bgcolor: active ? '#32486f' : 'transparent',
+          borderLeft: '0',
           transition: 'all 150ms ease',
           '&:hover': {
-            bgcolor: 'rgba(47,68,106,0.08)',
-            color: '#2f446a',
-            borderLeft: active ? '3px solid #2f446a' : '3px solid transparent',
+            bgcolor: active ? '#32486f' : 'rgba(50,72,111,0.08)',
+            color: active ? '#ffffff' : '#32486f',
           },
         }}
       >
         <Icon sx={{ fontSize: 20 }} />
         {!collapsed && (
-          <Typography sx={{ fontSize: '16px', fontWeight: 400, whiteSpace: 'nowrap' }}>
+          <Typography sx={{ fontSize: '15px', fontWeight: active ? 600 : 400, whiteSpace: 'nowrap' }}>
             {label}
           </Typography>
         )}
@@ -74,11 +73,11 @@ function SectionLabel({ label }: { label: string }) {
       sx={{
         fontSize: '12px',
         fontWeight: 600,
-        color: 'rgba(47,68,106,0.5)',
+        color: '#8d95a3',
         textTransform: 'uppercase',
         letterSpacing: '0.08em',
-        px: '20px',
-        mb: '4px',
+        px: '14px',
+        mb: '8px',
       }}
     >
       {label}
@@ -95,8 +94,8 @@ export default function Sidebar() {
       sx={{
         width: collapsed ? '56px' : '200px',
         minHeight: '100vh',
-        bgcolor: '#e9edf4',
-        boxShadow: '2px 0 8px rgba(0,0,0,0.08)',
+        bgcolor: '#dfe6f1',
+        borderRight: '1px solid #cfd7e4',
         display: 'flex',
         flexDirection: 'column',
         transition: 'width 200ms ease',
@@ -110,15 +109,16 @@ export default function Sidebar() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          px: '12px',
-          pt: '16px',
-          pb: '12px',
+          bgcolor: '#2F446A',
+          px: '14px',
+          pt: '22px',
+          pb: '18px',
         }}
       >
         <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px', overflow: 'hidden' }}>
-          <WaterDropIcon sx={{ color: '#00BFA5', fontSize: 24, flexShrink: 0 }} />
+          <WaterDropIcon sx={{ color: '#ffffff', fontSize: 26, flexShrink: 0 }} />
           {!collapsed && (
-            <Typography sx={{ color: '#2f446a', fontSize: '16px', fontWeight: 600, whiteSpace: 'nowrap' }}>
+            <Typography sx={{ color: '#ffffff', fontSize: '17px', fontWeight: 700, whiteSpace: 'nowrap' }}>
               AquaImpact
             </Typography>
           )}
@@ -126,32 +126,35 @@ export default function Sidebar() {
         <IconButton
           size="small"
           onClick={() => setCollapsed(!collapsed)}
-          sx={{ color: '#4B5F82', p: '4px', '&:hover': { color: '#2f446a' } }}
+          sx={{
+            color: '#ffffff',
+            p: '4px',
+            bgcolor: 'rgba(255,255,255,0.12)',
+            '&:hover': { bgcolor: 'rgba(255,255,255,0.18)' },
+          }}
         >
           {collapsed ? <ChevronRightIcon sx={{ fontSize: 18 }} /> : <ChevronLeftIcon sx={{ fontSize: 18 }} />}
         </IconButton>
       </Box>
 
-      {/* STRATEGIC */}
-      <Box sx={{ mt: '8px' }}>
+      <Box sx={{ height: '1px', bgcolor: 'rgba(255,255,255,0.08)' }} />
+
+      <Box sx={{ mt: '14px' }}>
         {!collapsed && <SectionLabel label="Strategic" />}
         {strategicItems.map((item) => (
           <NavItem key={item.label} {...item} collapsed={collapsed} />
         ))}
       </Box>
 
-      {/* ASSESSMENT */}
-      <Box sx={{ mt: '16px' }}>
+      <Box sx={{ mt: '18px' }}>
         {!collapsed && <SectionLabel label="Assessment" />}
         {assessmentItems.map((item) => (
           <NavItem key={item.label} {...item} collapsed={collapsed} />
         ))}
       </Box>
 
-      {/* Spacer */}
       <Box sx={{ flex: 1 }} />
 
-      {/* System */}
       <Box sx={{ pb: '24px' }}>
         {systemItems.map((item) => (
           <NavItem key={item.label} {...item} collapsed={collapsed} />

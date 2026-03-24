@@ -14,15 +14,17 @@ export default function PriorityItem({ item }: Props) {
         display: 'flex',
         alignItems: 'flex-start',
         gap: '12px',
-        px: '20px',
+        mx: '10px',
+        mb: '8px',
+        px: '12px',
         py: '10px',
-        borderBottom: '1px solid #F0F4F8',
+        borderRadius: '10px',
+        bgcolor: '#f5f7fb',
         cursor: 'pointer',
         transition: 'background 150ms ease',
-        '&:hover': { bgcolor: '#F8FAFC' },
+        '&:hover': { bgcolor: '#eef3fb' },
       }}
     >
-      {/* Number badge */}
       <Box
         sx={{
           width: 20,
@@ -41,18 +43,16 @@ export default function PriorityItem({ item }: Props) {
         </Typography>
       </Box>
 
-      {/* Content */}
       <Box sx={{ flex: 1 }}>
-        <Typography sx={{ fontSize: '14px', fontWeight: 600, color: '#1A2340', lineHeight: 1.3, mb: '2px' }}>
+        <Typography sx={{ fontSize: '14px', fontWeight: 700, color: '#2f3237', lineHeight: 1.3, mb: '2px' }}>
           {item.title}
         </Typography>
-        <Typography sx={{ fontSize: '12px', color: '#6B7A99', lineHeight: 1.5 }}>
+        <Typography sx={{ fontSize: '12px', color: '#8a93a3', lineHeight: 1.45 }}>
           {item.description}
         </Typography>
       </Box>
 
-      {/* Arrow */}
-      <NorthEastIcon sx={{ fontSize: 14, color: '#9AA3B8', flexShrink: 0, mt: '4px' }} />
+      <NorthEastIcon sx={{ fontSize: 18, color: '#6f7886', flexShrink: 0, mt: '4px' }} />
     </Box>
   );
 }

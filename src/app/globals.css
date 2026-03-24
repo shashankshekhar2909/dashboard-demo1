@@ -1,14 +1,43 @@
 @import 'leaflet/dist/leaflet.css';
 
+:root {
+  --app-bg: #f3f6fb;
+  --shell-bg: #2f446a;
+  --shell-bg-strong: #2f446a;
+  --surface: #ffffff;
+  --surface-muted: #f7f9fc;
+  --surface-soft: #eef3f9;
+  --border-soft: #e6ebf3;
+  --border-strong: #d7deea;
+  --text-primary: #2f3237;
+  --text-secondary: #7f8794;
+  --text-muted: #a4acb8;
+  --accent-green: #4ea974;
+  --accent-blue: #4d73b7;
+  --shadow-card: 0 10px 24px rgba(54, 72, 109, 0.08);
+  --shadow-soft: 0 4px 12px rgba(54, 72, 109, 0.08);
+}
+
 * {
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
-  background-color: #EEF2F7;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--app-bg);
+  color: var(--text-primary);
+}
+
+body {
+  min-width: 1280px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
 /* Ensure leaflet map fills its container with no whitespace */
@@ -16,7 +45,7 @@ html, body {
   display: block !important;
   width: 100% !important;
   height: 100% !important;
-  background: #f0f0f0;
+  background: #f6f8fc;
 }
 
 /* Fix: panes must stay position:absolute so popup transform positioning works */
@@ -66,8 +95,8 @@ html, body {
 
 /* Custom popup styles */
 .leaflet-popup-content-wrapper {
-  border-radius: 12px !important;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.18) !important;
+  border-radius: 14px !important;
+  box-shadow: var(--shadow-card) !important;
   padding: 0 !important;
   overflow: hidden;
 }
@@ -88,15 +117,21 @@ html, body {
 
 /* Scrollbar styling */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #F5F7FA;
+  background: #edf2f8;
 }
 ::-webkit-scrollbar-thumb {
-  background: #C4CCE0;
-  border-radius: 3px;
+  background: #ccd6e6;
+  border-radius: 999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #9AA3B8;
+  background: #acb8ca;
+}
+
+@media (max-width: 1200px) {
+  body {
+    min-width: 0;
+  }
 }

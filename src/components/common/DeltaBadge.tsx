@@ -29,7 +29,7 @@ export default function DeltaBadge({ delta, positive, onDark = false }: Props) {
       >
         {delta}
       </Typography>
-      <Icon sx={{ fontSize: 24, color, flexShrink: 0 }} />
+      <Icon sx={{ fontSize: 12, color, flexShrink: 0 }} />
     </Box>
   );
 }

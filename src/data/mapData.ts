@@ -104,11 +104,11 @@ export const mapMarkers: MapMarkerData[] = [
   {
     id: 'in', country: 'India', region: 'South Asia', lat: 20.5937, lng: 78.9629,
     riskLevel: 'medium', status: 'deployed',
-    capitalDeployed: '$210.0M', capitalValue: 210,
-    waterScarcity: '59%', impactScore: '85%', infrastructure: '72/100',
-    activeDeployments: 12,
-    deploymentLabels: ['Jal Jeevan', 'Punjab Zone', 'Rural Pipes', 'Smart Meters'],
-    intelligence: ['Jal Jeevan Mission alignment confirmed', 'Groundwater depletion in Punjab accelerating'],
+    capitalDeployed: '$120.0M', capitalValue: 120,
+    waterScarcity: '68%', impactScore: '88%', infrastructure: '62/100',
+    activeDeployments: 1,
+    deploymentLabels: ['Rainwater Harvesting Infrastructure'],
+    intelligence: ['India Announces National Water Mission Phase 2'],
     flagEmoji: '🇮🇳',
   },
   {

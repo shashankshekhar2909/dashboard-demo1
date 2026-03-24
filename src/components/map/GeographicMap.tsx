@@ -11,7 +11,11 @@ import { mapMarkers } from '@/data/mapData';
 import { MapMarkerData } from '@/types';
 
 // Fix Leaflet default marker icons broken in Next.js/webpack
-delete (L.Icon.Default.prototype as any)._getIconUrl;
+type LeafletDefaultIconPrototype = typeof L.Icon.Default.prototype & {
+  _getIconUrl?: string;
+};
+
+delete (L.Icon.Default.prototype as LeafletDefaultIconPrototype)._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
   iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
@@ -26,51 +30,54 @@ export default function GeographicMap() {
       className="geo-map-card"
       sx={{
         bgcolor: '#FFFFFF',
-        borderRadius: '12px',
+        borderRadius: '16px',
         overflow: 'hidden',
-        boxShadow: '0 1px 4px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04)',
+        boxShadow: 'var(--shadow-card)',
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
+        border: '1px solid var(--border-soft)',
       }}
     >
-      {/* Header */}
       <Box
         className="geo-map-header"
         sx={{
-          background: 'linear-gradient(135deg, #2D4B7A 0%, #1B2A4A 100%)',
+          bgcolor: '#2F446A',
           px: '24px',
           py: '20px',
           flexShrink: 0,
+          display: 'flex',
+          flexDirection: 'column',
         }}
       >
-        <Typography sx={{ fontSize: '16px', fontWeight: 600, color: '#FFFFFF' }}>
+        <Typography sx={{ fontSize: '16px', fontWeight: 600, color: '#FFFFFF', lineHeight: 1.2 }}>
           Geographic Impact Distribution
         </Typography>
-        <Typography sx={{ fontSize: '13px', color: '#A8B8D8', mt: '2px' }}>
+        <Typography sx={{ fontSize: '12px', color: '#A8B8D8', mt: '8px' }}>
           Real-time deployment scale and risk heat overlay
+        </Typography>
+        <Typography sx={{ fontSize: '12px', color: '#A8B8D8', mt: '4px' }}>
+          Updated: 3 minute ago
         </Typography>
       </Box>
 
-      {/* Map */}
       <Box className="geo-map-viewport" sx={{ flex: 1, position: 'relative', overflow: 'hidden', lineHeight: 0 }}>
         <MapInner markers={mapMarkers} onMarkerClick={setSelectedMarker} />
         <MapLegend />
 
-        {/* Fixed top-left popup panel */}
         {selectedMarker && (
           <Box
             className="geo-map-popup-panel"
             sx={{
               position: 'absolute',
-              top: '8px',
-              left: '8px',
+              top: '12px',
+              left: '12px',
               zIndex: 1000,
-              bgcolor: '#FFFFFF',
-              borderRadius: '12px',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.18)',
+              bgcolor: 'transparent',
+              borderRadius: '16px',
+              boxShadow: '0 22px 48px rgba(29, 43, 67, 0.20)',
               overflow: 'hidden',
-              width: '320px',
+              width: '340px',
               p: 0,
             }}
           >
@@ -79,7 +86,6 @@ export default function GeographicMap() {
         )}
       </Box>
 
-      {/* Stats bar */}
       <MapStatsBar />
     </Box>
   );
