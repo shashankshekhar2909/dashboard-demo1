@@ -12,28 +12,28 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import WaterDropIcon from '@mui/icons-material/WaterDrop';
 
 const strategicItems = [
-  { icon: <DevicesOutlinedIcon sx={{ fontSize: 20 }} />, label: 'Control Room', active: true },
-  { icon: <PublicOutlinedIcon sx={{ fontSize: 20 }} />, label: 'Countries' },
+  { icon: DevicesOutlinedIcon, label: 'Control Room', active: true },
+  { icon: PublicOutlinedIcon, label: 'Countries' },
 ];
 
 const assessmentItems = [
-  { icon: <LeaderboardOutlinedIcon sx={{ fontSize: 20 }} />, label: 'Deployments' },
-  { icon: <ArticleOutlinedIcon sx={{ fontSize: 20 }} />, label: 'Proposals' },
-  { icon: <RadarIcon sx={{ fontSize: 20 }} />, label: 'Intelligence' },
+  { icon: LeaderboardOutlinedIcon, label: 'Deployments' },
+  { icon: ArticleOutlinedIcon, label: 'Proposals' },
+  { icon: RadarIcon, label: 'Intelligence' },
 ];
 
 const systemItems = [
-  { icon: <TuneIcon sx={{ fontSize: 20 }} />, label: 'Settings' },
+  { icon: TuneIcon, label: 'Settings' },
 ];
 
 interface NavItemProps {
-  icon: React.ReactNode;
+  icon: React.ElementType;
   label: string;
   active?: boolean;
   collapsed: boolean;
 }
 
-function NavItem({ icon, label, active = false, collapsed }: NavItemProps) {
+function NavItem({ icon: Icon, label, active = false, collapsed }: NavItemProps) {
   return (
     <Tooltip title={collapsed ? label : ''} placement="right">
       <Box
@@ -53,11 +53,11 @@ function NavItem({ icon, label, active = false, collapsed }: NavItemProps) {
           '&:hover': {
             bgcolor: 'rgba(47,68,106,0.08)',
             color: '#2f446a',
-            borderLeft: '3px solid #2f446a',
+            borderLeft: active ? '3px solid #2f446a' : '3px solid transparent',
           },
         }}
       >
-        {icon}
+        <Icon sx={{ fontSize: 20 }} />
         {!collapsed && (
           <Typography sx={{ fontSize: '16px', fontWeight: 400, whiteSpace: 'nowrap' }}>
             {label}
@@ -91,6 +91,7 @@ export default function Sidebar() {
 
   return (
     <Box
+      className="sidebar"
       sx={{
         width: collapsed ? '56px' : '200px',
         minHeight: '100vh',

@@ -6,6 +6,15 @@ import DeploymentAlert from './DeploymentAlert';
 import ForecastItemComponent from './ForecastItem';
 import { priorities, deploymentAlert, forecastItems } from '@/data/aiData';
 
+const sectionLabelSx = {
+  fontSize: '10px',
+  fontWeight: 600,
+  color: '#9AA3B8',
+  textTransform: 'uppercase' as const,
+  letterSpacing: '0.08em',
+  p: '16px 20px 8px',
+};
+
 export default function AIExecutiveBrief() {
   return (
     <Box
@@ -29,98 +38,60 @@ export default function AIExecutiveBrief() {
           background: 'linear-gradient(135deg, #2D4B7A 0%, #1B2A4A 100%)',
           px: '24px',
           py: '20px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
           flexShrink: 0,
+          display: 'flex',
+          flexDirection: 'column',
         }}
       >
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <AutoAwesomeIcon sx={{ fontSize: 18, color: '#FFFFFF' }} />
-          <Typography sx={{ fontSize: '16px', fontWeight: 600, color: '#FFFFFF' }}>
-            AI Executive Brief
-          </Typography>
+        {/* Top row: icon+title | button */}
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <AutoAwesomeIcon sx={{ fontSize: 16, color: '#FFD700' }} />
+            <Typography sx={{ fontSize: '16px', fontWeight: 600, color: '#FFFFFF' }}>
+              AI Executive Brief
+            </Typography>
+          </Box>
+          <Button
+            variant="outlined"
+            size="small"
+            onClick={() => console.log('View Full Report clicked')}
+            sx={{
+              color: '#FFFFFF',
+              borderColor: 'rgba(255,255,255,0.4)',
+              borderRadius: '20px',
+              fontSize: '13px',
+              px: '16px',
+              py: '6px',
+              textTransform: 'none',
+              minWidth: 0,
+              lineHeight: 1.4,
+              '&:hover': { borderColor: '#FFFFFF', bgcolor: 'rgba(255,255,255,0.1)' },
+            }}
+          >
+            View Full Report ›
+          </Button>
         </Box>
-        <Button
-          variant="outlined"
-          size="small"
-          sx={{
-            color: '#FFFFFF',
-            borderColor: 'rgba(255,255,255,0.5)',
-            borderRadius: '20px',
-            fontSize: '12px',
-            px: '16px',
-            py: '4px',
-            '&:hover': { borderColor: '#FFFFFF', bgcolor: 'rgba(255,255,255,0.1)' },
-          }}
-        >
-          View Full Report ›
-        </Button>
+        {/* Bottom row: timestamp */}
+        <Typography sx={{ fontSize: '12px', color: '#A8B8D8', mt: '8px' }}>
+          Updated: 3 minute ago
+        </Typography>
       </Box>
 
-      {/* Timestamp */}
-      <Typography sx={{ fontSize: '13px', color: '#9AA3B8', px: '20px', py: '8px' }}>
-        Updated: Today, 09:41 AM UTC
-      </Typography>
-
-      {/* Top 3 Priorities */}
-      <Typography
-        sx={{
-          fontSize: '10px',
-          fontWeight: 600,
-          color: '#6B7A99',
-          textTransform: 'uppercase',
-          letterSpacing: '0.08em',
-          px: '20px',
-          pb: '8px',
-          pt: '4px',
-        }}
-      >
-        Top 3 Priorities
-      </Typography>
-
+      {/* TOP 3 PRIORITIES */}
+      <Typography sx={sectionLabelSx}>Top 3 Priorities</Typography>
       {priorities.map((item) => (
         <PriorityItemComponent key={item.id} item={item} />
       ))}
 
-      {/* Alert */}
-      <Typography
-        sx={{
-          fontSize: '10px',
-          fontWeight: 600,
-          color: '#6B7A99',
-          textTransform: 'uppercase',
-          letterSpacing: '0.08em',
-          px: '20px',
-          pt: '12px',
-          pb: '4px',
-        }}
-      >
-        Underperforming Deployment Alert
-      </Typography>
-
+      {/* Underperforming Deployment Alert */}
       <DeploymentAlert data={deploymentAlert} />
 
-      {/* Strategic Forecasting */}
-      <Typography
-        sx={{
-          fontSize: '10px',
-          fontWeight: 600,
-          color: '#6B7A99',
-          textTransform: 'uppercase',
-          letterSpacing: '0.08em',
-          px: '20px',
-          py: '12px',
-        }}
-      >
-        Strategic Forecasting
-      </Typography>
-
+      {/* STRATEGIC FORECASTING */}
+      <Typography sx={sectionLabelSx}>Strategic Forecasting</Typography>
       {forecastItems.map((item) => (
         <ForecastItemComponent key={item.id} item={item} />
       ))}
 
-      {/* Spacer */}
       <Box sx={{ flex: 1 }} />
     </Box>
   );

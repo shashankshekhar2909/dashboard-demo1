@@ -55,10 +55,11 @@ export default function AlertsTicker() {
             </Typography>
             <Box
               sx={{
-                bgcolor: '#F5F7FA',
-                borderRadius: '6px',
-                px: '6px',
+                bgcolor: '#F0F4F8',
+                borderRadius: '20px',
+                px: '8px',
                 py: '2px',
+                flexShrink: 0,
               }}
             >
               <Typography sx={{ fontSize: '11px', fontWeight: 500, color: '#6B7A99' }}>

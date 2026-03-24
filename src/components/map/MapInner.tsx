@@ -29,9 +29,9 @@ export default function MapInner({ markers, onMarkerClick }: Props) {
 
   return (
     <MapContainer
-      center={[15, 60]}
+      center={[10, 35]}
       zoom={3}
-      style={{ height: '100%', width: '100%' }}
+      style={{ height: '100%', width: '100%', display: 'block' }}
       scrollWheelZoom={true}
       zoomControl={false}
     >

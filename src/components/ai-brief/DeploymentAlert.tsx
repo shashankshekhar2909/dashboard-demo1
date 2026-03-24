@@ -19,20 +19,20 @@ export default function DeploymentAlert({ data }: Props) {
         p: '12px',
       }}
     >
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: '6px', mb: '4px' }}>
-        <WarningAmberIcon sx={{ fontSize: 16, color: '#F59E0B' }} />
-        <Typography sx={{ fontSize: '13px', fontWeight: 600, color: '#7B5A00' }}>
-          {data.country} — {data.issue}
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+        <WarningAmberIcon sx={{ fontSize: 16, color: '#F59E0B', flexShrink: 0 }} />
+        <Typography sx={{ fontSize: '13px', fontWeight: 600, color: '#1A2340' }}>
+          Underperforming Deployment Alert
         </Typography>
       </Box>
-      <Typography sx={{ fontSize: '12px', color: '#7B5A00', lineHeight: 1.5, mb: '6px' }}>
+      <Typography sx={{ fontSize: '12px', color: '#7B5A00', lineHeight: 1.5, mt: '6px' }}>
         {data.body}
       </Typography>
       <Typography
         component="span"
-        sx={{ fontSize: '12px', fontWeight: 600, color: '#F59E0B', cursor: 'pointer', '&:hover': { textDecoration: 'underline' } }}
+        sx={{ fontSize: '12px', color: '#F59E0B', cursor: 'pointer', mt: '6px', display: 'block', '&:hover': { textDecoration: 'underline' } }}
       >
-        View Details →
+        View →
       </Typography>
     </Box>
   );

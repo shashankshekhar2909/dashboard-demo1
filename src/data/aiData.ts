@@ -40,13 +40,11 @@ export const forecastItems: ForecastItem[] = [
 ];
 
 export const tickerItems: TickerItem[] = [
-  { id: 't1', severity: 'high', text: 'Critical water shortage escalating — northern Nigeria districts report 72% scarcity index', region: 'West Africa' },
-  { id: 't2', severity: 'medium', text: 'Bangladesh flood alert — 6 WASH installations at risk of submergence', region: 'South Asia' },
-  { id: 't3', severity: 'high', text: 'Mozambique cyclone damage: 3 treatment plants offline, 280K beneficiaries impacted', region: 'East Africa' },
-  { id: 't4', severity: 'medium', text: 'Mekong Delta salinity intrusion reaches new seasonal high — Vietnam monitoring elevated', region: 'SE Asia' },
-  { id: 't5', severity: 'medium', text: 'Sudan humanitarian corridor negotiations stalled — deployment on hold', region: 'North Africa' },
-  { id: 't6', severity: 'high', text: 'Mali security perimeter restricts field access — remote monitoring only', region: 'Sahel' },
-  { id: 't7', severity: 'medium', text: 'Pakistan Indus River flow down 12% — irrigation stress emerging in Punjab', region: 'South Asia' },
+  { id: 't1', severity: 'high',   text: 'Portfolio Overexposed to East African Climate Risk', region: 'East Africa' },
+  { id: 't2', severity: 'medium', text: 'Severe Drought Intensifying in Horn of Africa', region: 'East Africa' },
+  { id: 't3', severity: 'high',   text: 'Political Instability Escalating in Pakistan', region: 'South Asia' },
+  { id: 't4', severity: 'medium', text: 'Mozambique cyclone damage: 3 treatment plants offline', region: 'East Africa' },
+  { id: 't5', severity: 'medium', text: 'Mekong Delta salinity intrusion reaches seasonal high', region: 'SE Asia' },
 ];
 
 export const bestPerformer: PerformanceEntry = {

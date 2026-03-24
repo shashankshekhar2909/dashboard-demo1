@@ -48,12 +48,12 @@ export default function GeographicMap() {
           Geographic Impact Distribution
         </Typography>
         <Typography sx={{ fontSize: '13px', color: '#A8B8D8', mt: '2px' }}>
-          Real-time deployment status across 22 active regions
+          Real-time deployment scale and risk heat overlay
         </Typography>
       </Box>
 
       {/* Map */}
-      <Box className="geo-map-viewport" sx={{ position: 'relative', flex: 1, minHeight: 0 }}>
+      <Box className="geo-map-viewport" sx={{ flex: 1, position: 'relative', overflow: 'hidden', lineHeight: 0 }}>
         <MapInner markers={mapMarkers} onMarkerClick={setSelectedMarker} />
         <MapLegend />
 
@@ -71,7 +71,7 @@ export default function GeographicMap() {
               boxShadow: '0 8px 32px rgba(0,0,0,0.18)',
               overflow: 'hidden',
               width: '320px',
-              p: '16px',
+              p: 0,
             }}
           >
             <MapPopup marker={selectedMarker} onClose={() => setSelectedMarker(null)} />

@@ -49,8 +49,18 @@ export default function ExecutiveControlRoom() {
               </Typography>
             </Box>
             <Box className="ecr-live-indicator" sx={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <Box className="ecr-live-dot" sx={{ width: 8, height: 8, borderRadius: '50%', bgcolor: '#4CAF50', animation: 'pulse 2s infinite' }} />
-              <Typography sx={{ fontSize: '12px', fontWeight: 500, color: '#4CAF50' }}>
+              <Box
+                className="ecr-live-dot"
+                sx={{
+                  width: 8,
+                  height: 8,
+                  borderRadius: '50%',
+                  bgcolor: '#4CAF50',
+                  boxShadow: '0 0 0 3px rgba(76,175,80,0.2)',
+                  animation: 'pulse 2s infinite',
+                }}
+              />
+              <Typography sx={{ fontSize: '13px', fontWeight: 500, color: '#4CAF50' }}>
                 Live Monitoring
               </Typography>
             </Box>

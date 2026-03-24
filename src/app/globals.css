@@ -13,6 +13,7 @@ html, body {
 
 /* Ensure leaflet map fills its container with no whitespace */
 .leaflet-container {
+  display: block !important;
   width: 100% !important;
   height: 100% !important;
   background: #f0f0f0;

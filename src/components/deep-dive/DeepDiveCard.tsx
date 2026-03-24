@@ -1,17 +1,18 @@
 'use client';
 import { Box, Typography, Divider } from '@mui/material';
 import FlagOutlinedIcon from '@mui/icons-material/FlagOutlined';
-import BarChartOutlinedIcon from '@mui/icons-material/BarChartOutlined';
-import AssignmentOutlinedIcon from '@mui/icons-material/AssignmentOutlined';
+import LeaderboardOutlinedIcon from '@mui/icons-material/LeaderboardOutlined';
+import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
 import BoltIcon from '@mui/icons-material/Bolt';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { DeepDiveCardData } from '@/types';
 import ProgressBar from '@/components/common/ProgressBar';
 
-const iconMap: Record<string, React.ReactNode> = {
-  Public: <FlagOutlinedIcon sx={{ fontSize: 20 }} />,
-  Construction: <BarChartOutlinedIcon sx={{ fontSize: 20 }} />,
-  Description: <AssignmentOutlinedIcon sx={{ fontSize: 20 }} />,
-  Psychology: <BoltIcon sx={{ fontSize: 20 }} />,
+const iconMap: Record<string, React.ElementType> = {
+  FlagOutlined: FlagOutlinedIcon,
+  Leaderboard: LeaderboardOutlinedIcon,
+  Article: ArticleOutlinedIcon,
+  Bolt: BoltIcon,
 };
 
 interface Props {
@@ -19,19 +20,21 @@ interface Props {
 }
 
 export default function DeepDiveCard({ data }: Props) {
+  const Icon = iconMap[data.iconName];
+
   return (
     <Box
       sx={{
         bgcolor: '#FFFFFF',
-        background: `linear-gradient(135deg, #FFFFFF 60%, ${data.moduleColor}0A)`,
+        background: `linear-gradient(135deg, #FFFFFF 60%, ${data.moduleColor}08 100%)`,
         borderRadius: '12px',
         p: '20px',
-        boxShadow: '0 1px 4px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04)',
+        boxShadow: '0 1px 4px rgba(0,0,0,0.06)',
         border: '1px solid transparent',
         transition: 'box-shadow 200ms ease, transform 200ms ease, border-color 200ms ease',
         cursor: 'pointer',
         '&:hover': {
-          boxShadow: '0 8px 24px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06)',
+          boxShadow: '0 8px 24px rgba(0,0,0,0.12)',
           transform: 'translateY(-3px)',
           borderColor: `${data.moduleColor}4D`,
         },
@@ -47,7 +50,7 @@ export default function DeepDiveCard({ data }: Props) {
             width: 40,
             height: 40,
             borderRadius: '10px',
-            bgcolor: `${data.moduleColor}26`,
+            bgcolor: `${data.moduleColor}1A`,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -55,7 +58,7 @@ export default function DeepDiveCard({ data }: Props) {
             flexShrink: 0,
           }}
         >
-          {iconMap[data.iconName]}
+          {Icon && <Icon sx={{ fontSize: 20 }} />}
         </Box>
       </Box>
 
@@ -69,7 +72,7 @@ export default function DeepDiveCard({ data }: Props) {
 
       {/* Stats */}
       {data.stats.map((stat) => (
-        <Box key={stat.label} sx={{ display: 'flex', justifyContent: 'space-between', mb: '6px' }}>
+        <Box key={stat.label} sx={{ display: 'flex', justifyContent: 'space-between', mb: '8px' }}>
           <Typography sx={{ fontSize: '13px', color: '#6B7A99' }}>{stat.label}</Typography>
           <Typography sx={{ fontSize: '13px', fontWeight: 600, color: data.moduleColor }}>
             {stat.value}
@@ -81,18 +84,24 @@ export default function DeepDiveCard({ data }: Props) {
       <ProgressBar value={data.progressValue} color={data.moduleColor} />
 
       {/* CTA */}
-      <Typography
+      <Box
         sx={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '4px',
+          mt: '16px',
           fontSize: '14px',
           fontWeight: 500,
           color: data.moduleColor,
-          mt: '16px',
           cursor: 'pointer',
           '&:hover': { opacity: 0.8 },
         }}
       >
-        {data.cta}
-      </Typography>
+        <Typography sx={{ fontSize: '14px', fontWeight: 500, color: data.moduleColor }}>
+          {data.cta}
+        </Typography>
+        <ChevronRightIcon sx={{ fontSize: 16, color: data.moduleColor }} />
+      </Box>
     </Box>
   );
 }

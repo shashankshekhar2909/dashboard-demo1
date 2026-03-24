@@ -1,9 +1,7 @@
 'use client';
 import { Box, Typography } from '@mui/material';
-import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import EmojiEventsOutlinedIcon from '@mui/icons-material/EmojiEventsOutlined';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
 export default function PerformanceBanner() {
   return (
@@ -40,11 +38,11 @@ export default function PerformanceBanner() {
             flexShrink: 0,
           }}
         >
-          <EmojiEventsIcon sx={{ fontSize: 24, color: '#4CAF50' }} />
+          <EmojiEventsOutlinedIcon sx={{ fontSize: 24, color: '#4CAF50' }} />
         </Box>
 
         <Box sx={{ flex: 1 }}>
-          <Typography sx={{ fontSize: '12px', fontWeight: 600, color: '#6B7A99', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+          <Typography sx={{ fontSize: '11px', fontWeight: 600, color: '#6B7A99', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
             Best Performer
           </Typography>
           <Typography sx={{ fontSize: '18px', fontWeight: 600, color: '#1A2340', mt: '2px', lineHeight: 1.2 }}>
@@ -52,12 +50,9 @@ export default function PerformanceBanner() {
           </Typography>
         </Box>
 
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: '2px', flexShrink: 0 }}>
-          <ArrowUpwardIcon sx={{ fontSize: 18, color: '#4CAF50' }} />
-          <Typography sx={{ fontSize: '16px', fontWeight: 600, color: '#4CAF50' }}>
-            +15.6%
-          </Typography>
-        </Box>
+        <Typography sx={{ fontSize: '16px', fontWeight: 600, color: '#4CAF50', flexShrink: 0 }}>
+          +15.6% ▲
+        </Typography>
       </Box>
 
       {/* Needs Attention */}
@@ -95,7 +90,7 @@ export default function PerformanceBanner() {
         </Box>
 
         <Box sx={{ flex: 1 }}>
-          <Typography sx={{ fontSize: '12px', fontWeight: 600, color: '#6B7A99', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+          <Typography sx={{ fontSize: '11px', fontWeight: 600, color: '#6B7A99', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
             Needs Attention
           </Typography>
           <Typography sx={{ fontSize: '18px', fontWeight: 600, color: '#1A2340', mt: '2px', lineHeight: 1.2 }}>
@@ -103,12 +98,9 @@ export default function PerformanceBanner() {
           </Typography>
         </Box>
 
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: '2px', flexShrink: 0 }}>
-          <ArrowDownwardIcon sx={{ fontSize: 18, color: '#F44336' }} />
-          <Typography sx={{ fontSize: '16px', fontWeight: 600, color: '#F44336' }}>
-            -50.6%
-          </Typography>
-        </Box>
+        <Typography sx={{ fontSize: '16px', fontWeight: 600, color: '#F44336', flexShrink: 0 }}>
+          -50.6% ▼
+        </Typography>
       </Box>
 
     </Box>

@@ -10,9 +10,9 @@ import DeltaBadge from '@/components/common/DeltaBadge';
 
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
-const iconMap: Record<string, React.ReactNode> = {
-  People: <GroupsIcon sx={{ fontSize: 22 }} />,
-  AccountBalance: <AccountBalanceWalletIcon sx={{ fontSize: 22 }} />,
+const iconMap: Record<string, React.ElementType> = {
+  People: GroupsIcon,
+  AccountBalance: AccountBalanceWalletIcon,
 };
 
 interface Props {
@@ -22,6 +22,7 @@ interface Props {
 export default function HeroKpiCard({ data }: Props) {
   const countedValue = useCountUp(data.value, 2000);
   const isDark = data.variant === 'dark';
+  const Icon = iconMap[data.icon];
 
   const chartOptions = {
     ...baseChartOptions,
@@ -33,16 +34,21 @@ export default function HeroKpiCard({ data }: Props) {
     },
   };
 
-  const textPrimary = isDark ? '#FFFFFF' : '#1A2340';
-  const textSecondary = isDark ? 'rgba(255,255,255,0.7)' : '#6B7A99';
-  const iconBg = isDark ? 'rgba(255,255,255,0.15)' : '#f4f6f9';
-  const iconColor = isDark ? '#FFFFFF' : '#2f446a';
+  const textPrimary   = isDark ? '#FFFFFF' : '#1A2340';
+  const textSecondary = isDark ? '#A8B8D8'  : '#6B7A99';
+  const iconBg        = isDark ? 'rgba(255,255,255,0.15)' : '#F4F6F9';
+  const iconColor     = isDark ? '#FFFFFF' : '#2f446a';
+
+  const displayValue = data.id === 'capital'
+    ? `$${countedValue}`
+    : `${(countedValue / 1000000).toFixed(1)}`;
 
   return (
     <Box
+      className="hero-kpi-card"
       sx={{
         background: isDark
-          ? 'linear-gradient(135deg, #466191 0%, #2f446a 100%)'
+          ? 'linear-gradient(135deg, #2D3F6B 0%, #1B2A4A 100%)'
           : '#FFFFFF',
         borderRadius: '16px',
         p: '24px',
@@ -62,18 +68,20 @@ export default function HeroKpiCard({ data }: Props) {
     >
       {/* Icon */}
       <Box
+        className="hero-kpi-icon"
         sx={{
-          width: 40,
-          height: 40,
+          width: 44,
+          height: 44,
           borderRadius: '10px',
           bgcolor: iconBg,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           color: iconColor,
+          flexShrink: 0,
         }}
       >
-        {iconMap[data.icon]}
+        <Icon sx={{ fontSize: 24 }} />
       </Box>
 
       {/* Chart — absolute top-right */}
@@ -88,15 +96,15 @@ export default function HeroKpiCard({ data }: Props) {
       </Box>
 
       {/* Label */}
-      <Typography sx={{ color: textSecondary, fontSize: '16px', fontWeight: 400, mt: '12px' }}>
+      <Typography sx={{ color: textSecondary, fontSize: '13px', fontWeight: 400, mt: '12px' }}>
         {data.label}
       </Typography>
 
       {/* Value + Delta */}
-      <Box sx={{ display: 'flex', alignItems: 'baseline', mt: '4px' }}>
+      <Box sx={{ display: 'flex', alignItems: 'baseline', mt: '4px', gap: '8px' }}>
         <Typography sx={{ color: textPrimary, fontSize: '36px', fontWeight: 700, lineHeight: 1.1 }}>
-          {data.id === 'capital' ? `$${countedValue}` : `${(countedValue / 1000000).toFixed(1)}`}
-          <Typography component="span" sx={{ fontSize: '20px', fontWeight: 500, color: textSecondary, ml: '2px' }}>
+          {displayValue}
+          <Typography component="span" sx={{ fontSize: '20px', fontWeight: 700, color: textPrimary, ml: '2px' }}>
             {data.suffix}
           </Typography>
         </Typography>
